@@ -7,10 +7,10 @@
 export function Connector({ dir }: { dir: "ltr" | "rtl" }) {
   const d =
     dir === "ltr"
-      ? "M 620 0 H 680 Q 700 0 700 20 V 120"
-      : "M 380 0 H 320 Q 300 0 300 20 V 120";
+      ? "M 760 0 H 840 Q 860 0 860 20 V 120"
+      : "M 240 0 H 160 Q 140 0 140 20 V 120";
 
-  const nodeX = dir === "ltr" ? "700" : "300";
+  const nodeX = dir === "ltr" ? "860" : "140";
 
   return (
     <div className="relative h-24 w-full" aria-hidden>

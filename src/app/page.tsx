@@ -23,7 +23,7 @@ function Bullet({ children }: { children: string }) {
 
 export default function Home() {
   return (
-    <div className="mx-auto w-full max-w-5xl px-6 py-16 sm:py-24">
+    <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:py-24">
       {/* Hero — centered. */}
       <header className="text-center">
         <div className="text-sm text-muted mb-3">
@@ -112,7 +112,7 @@ export default function Home() {
             return (
               <div key={job.company}>
                 <article
-                  className={`rounded-md border border-line bg-panel p-6 transition-colors hover:border-accent/30 md:w-[62%] ${
+                  className={`rounded-md border border-line bg-panel p-6 transition-colors hover:border-accent/30 md:w-[76%] ${
                     left ? "md:mr-auto" : "md:ml-auto"
                   }`}
                 >
