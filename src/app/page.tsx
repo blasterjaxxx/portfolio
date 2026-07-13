@@ -34,12 +34,19 @@ export default function Home() {
           {profile.name}
         </h1>
         <p className="mt-2 text-sm text-muted">
-          {profile.role} @ {profile.company} · {profile.location}
+          {profile.role} · {profile.location}
         </p>
 
-        <div className="mt-8 border-l-2 border-line pl-4 font-sans text-[15px] leading-relaxed text-foreground/90 space-y-1">
-          {profile.tagline.map((line) => (
-            <p key={line}>{line}</p>
+        {profile.availability && (
+          <p className="mt-3 inline-flex items-center gap-2 rounded border border-line bg-panel px-2.5 py-1 text-xs text-accent">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
+            {profile.availability}
+          </p>
+        )}
+
+        <div className="mt-8 border-l-2 border-line pl-4 font-sans text-[15px] leading-relaxed text-foreground/90 space-y-3">
+          {profile.summary.map((para) => (
+            <p key={para}>{para}</p>
           ))}
         </div>
 
@@ -73,6 +80,20 @@ export default function Home() {
           <CopyEmail email={profile.email} />
         </nav>
       </header>
+
+      <section className="mt-20">
+        <SectionHeading>stack</SectionHeading>
+        <dl className="space-y-3 text-sm">
+          {skills.map((group) => (
+            <div key={group.label} className="sm:flex sm:gap-4">
+              <dt className="w-32 shrink-0 text-muted">{group.label}</dt>
+              <dd className="mt-1 sm:mt-0 text-foreground/85">
+                {group.items.join(" · ")}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
 
       <section className="mt-20">
         <SectionHeading>experience</SectionHeading>
@@ -142,20 +163,6 @@ export default function Home() {
             </article>
           ))}
         </div>
-      </section>
-
-      <section className="mt-20">
-        <SectionHeading>stack</SectionHeading>
-        <dl className="space-y-3 text-sm">
-          {skills.map((group) => (
-            <div key={group.label} className="sm:flex sm:gap-4">
-              <dt className="w-32 shrink-0 text-muted">{group.label}</dt>
-              <dd className="mt-1 sm:mt-0 text-foreground/85">
-                {group.items.join(" · ")}
-              </dd>
-            </div>
-          ))}
-        </dl>
       </section>
 
       <section className="mt-20">

@@ -1,18 +1,19 @@
 export const profile = {
   name: "Sparsh Duggal",
   handle: "sparsh-duggal",
-  role: "Software Development Engineer II",
-  company: "Groupon",
+  role: "Senior Software Engineer",
   location: "Bangalore, India",
   email: "sparshduggalw@gmail.com",
   linkedin: "https://linkedin.com/in/sparsh-duggal",
   github: "https://github.com/blasterjaxxx",
   // Drop the PDF into public/ and set this to its path to show the resume link.
   resume: null as string | null,
-  tagline: [
-    "6 years building distributed systems and event-driven backends.",
-    "Now building AI-native systems — agentic tooling, multi-pass LLM",
-    "pipelines, and RAG assistants with LangChain and LangGraph.",
+  // Set to null to remove the availability line from the header.
+  availability: "Open to senior backend & AI engineering roles" as string | null,
+  summary: [
+    "Six years building backend systems that carry real load — distributed data pipelines, event-driven platforms, and the on-call reality of keeping them up — across fintech, e-commerce and enterprise.",
+    "Most recently I've been building AI-native systems: an LLM-powered on-call agent that cut incident resolution time 10x in production, multi-pass evaluation pipelines, and RAG assistants on LangChain and LangGraph.",
+    "I'm looking for senior roles where those two things meet — AI systems that have to survive contact with production.",
   ],
 };
 
@@ -28,15 +29,14 @@ export type Job = {
 export const experience: Job[] = [
   {
     company: "Groupon",
-    title: "Software Development Engineer II",
-    period: "Aug 2024 — Present",
+    title: "Senior Software Engineer",
+    period: "Aug 2024 — Jun 2026",
     location: "Bengaluru",
-    current: true,
     bullets: [
       "Engineered an AI-powered on-call automation platform integrating GChat alert channels with a Kibana MCP server for automated root cause analysis using LLMs — cutting incident resolution time by 10x.",
       "Architected a merchant connectivity monitoring platform that reduced partner issue detection from 4 days to near real-time through proactive alerting and automated diagnostics.",
       "Architected an SFTP-based distributed data pipeline for a high-value API migration — download, validation, retry, and async processing workflows end to end.",
-      "Own backend ingestion for real-time availability data from high-revenue partners including Universal Studios, Viator, Ingresso, Ventrata and Costco.",
+      "Owned backend ingestion for real-time availability data from high-revenue partners including Universal Studios, Viator, Ingresso, Ventrata and Costco.",
       "Streamlined 5+ recurring engineering workflows with AI-driven tooling, and shipped an internal encryption platform now used daily for secure partner config management.",
     ],
   },
