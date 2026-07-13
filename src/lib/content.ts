@@ -21,7 +21,7 @@ export const profile = {
   // The grid below adapts to the number of entries, so more can be added later.
   stats: [
     { value: "6+", label: "years backend" },
-    { value: "3", label: "production services owned" },
+    { value: "15", label: "production services owned" },
     { value: "100ms", label: "SLA across owned services" },
   ],
 };
