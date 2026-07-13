@@ -4,8 +4,8 @@ import { useEffect, useRef } from "react";
 
 const GLYPHS = "01{}[]()<>/\\|=+-*&^%$#@!?;:.,_~αβλΣΔ∀∃→⇒";
 const CELL = 16;
-const BASE_ALPHA = 0.05;
-const LIT_RADIUS = 130;
+const BASE_ALPHA = 0.1;
+const LIT_RADIUS = 260;
 
 type Cell = { char: string; lit: number };
 
@@ -49,8 +49,7 @@ export function TerminalBackground() {
         lit: 0,
       }));
 
-      // Roughly one falling column per twelve, so the effect stays sparse.
-      const dropCount = Math.max(3, Math.floor(cols / 12));
+      const dropCount = Math.max(5, Math.floor(cols / 7));
       drops = Array.from({ length: dropCount }, () => ({
         col: (Math.random() * cols) | 0,
         y: Math.random() * -rows,
@@ -76,12 +75,13 @@ export function TerminalBackground() {
           }
           // Light the cells in the drop's tail; the head is brightest.
           const head = Math.floor(drop.y);
-          for (let t = 0; t < 8; t++) {
+          const TAIL = 14;
+          for (let t = 0; t < TAIL; t++) {
             const row = head - t;
             if (row < 0 || row >= rows) continue;
             const cell = cells[row * cols + drop.col];
             if (!cell) continue;
-            const strength = (1 - t / 8) * 0.5;
+            const strength = (1 - t / TAIL) * 0.7;
             if (strength > cell.lit) cell.lit = strength;
           }
         }

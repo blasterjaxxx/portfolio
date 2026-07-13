@@ -67,16 +67,16 @@ body {
   );
 }
 
-/* Dims the glyph field behind the reading column (max-w-3xl = 48rem) so text
-   always wins, while leaving the animation legible in the side margins. */
+/* Dims the glyph field behind the content grid (max-w-6xl = 72rem) so text keeps
+   its contrast, while leaving the animation at full strength in the margins. */
 .column-mask {
   background: linear-gradient(
     to right,
     transparent 0,
-    transparent calc(50% - 28rem),
-    rgba(10, 12, 13, 0.82) calc(50% - 23rem),
-    rgba(10, 12, 13, 0.82) calc(50% + 23rem),
-    transparent calc(50% + 28rem),
+    transparent calc(50% - 40rem),
+    rgba(10, 12, 13, 0.62) calc(50% - 35rem),
+    rgba(10, 12, 13, 0.62) calc(50% + 35rem),
+    transparent calc(50% + 40rem),
     transparent 100%
   );
 }
