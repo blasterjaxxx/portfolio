@@ -149,46 +149,56 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects. */}
+      {/* Projects — same staggered zigzag as experience. */}
       <section className="mt-24">
         <SectionHeading>building</SectionHeading>
-        <div className="grid gap-6 lg:grid-cols-2">
-          {projects.map((project) => (
-            <article
-              key={project.name}
-              className="rounded-md border border-line bg-panel p-6 transition-colors hover:border-accent/30"
-            >
-              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                <h3 className="text-base font-semibold text-foreground">
-                  {project.name}
-                </h3>
-                <span className="text-xs text-muted tabular-nums">
-                  {project.year}
-                </span>
+        <div>
+          {projects.map((project, i) => {
+            const left = i % 2 === 0;
+            return (
+              <div key={project.name}>
+                <article
+                  className={`rounded-md border border-line bg-panel p-6 transition-colors hover:border-accent/30 md:w-[76%] ${
+                    left ? "md:mr-auto" : "md:ml-auto"
+                  }`}
+                >
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <h3 className="text-base font-semibold text-foreground">
+                      {project.name}
+                    </h3>
+                    <span className="text-xs text-muted tabular-nums">
+                      {project.year}
+                    </span>
+                  </div>
+
+                  <p className="mt-3 font-sans text-[15px] leading-relaxed text-foreground/90">
+                    {project.blurb}
+                  </p>
+
+                  <ul className="mt-4 flex flex-wrap gap-1.5">
+                    {project.stack.map((tech) => (
+                      <li
+                        key={tech}
+                        className="rounded border border-line px-2 py-0.5 text-[11px] text-muted"
+                      >
+                        {tech}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <ul className="mt-5 space-y-2.5 font-sans text-[15px] leading-relaxed text-foreground/70">
+                    {project.highlights.map((highlight) => (
+                      <Bullet key={highlight}>{highlight}</Bullet>
+                    ))}
+                  </ul>
+                </article>
+
+                {i < projects.length - 1 && (
+                  <Connector dir={left ? "ltr" : "rtl"} />
+                )}
               </div>
-
-              <p className="mt-3 font-sans text-[15px] leading-relaxed text-foreground/90">
-                {project.blurb}
-              </p>
-
-              <ul className="mt-4 flex flex-wrap gap-1.5">
-                {project.stack.map((tech) => (
-                  <li
-                    key={tech}
-                    className="rounded border border-line px-2 py-0.5 text-[11px] text-muted"
-                  >
-                    {tech}
-                  </li>
-                ))}
-              </ul>
-
-              <ul className="mt-5 space-y-2.5 font-sans text-[15px] leading-relaxed text-foreground/70">
-                {project.highlights.map((highlight) => (
-                  <Bullet key={highlight}>{highlight}</Bullet>
-                ))}
-              </ul>
-            </article>
-          ))}
+            );
+          })}
         </div>
       </section>
 
