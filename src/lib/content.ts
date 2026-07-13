@@ -10,10 +10,18 @@ export const profile = {
   resume: null as string | null,
   // Set to null to remove the availability line from the header.
   availability: "Open to senior backend & AI engineering roles" as string | null,
+
+  headline: "I build AI systems that survive contact with production.",
   summary: [
-    "Six years building backend systems that carry real load — distributed data pipelines, event-driven platforms, and the on-call reality of keeping them up — across fintech, e-commerce and enterprise.",
-    "Most recently I've been building AI-native systems: an LLM-powered on-call agent that cut incident resolution time 10x in production, multi-pass evaluation pipelines, and RAG assistants on LangChain and LangGraph.",
-    "I'm looking for senior roles where those two things meet — AI systems that have to survive contact with production.",
+    "Six years of distributed systems, event-driven platforms and on-call reality — across fintech, e-commerce and enterprise.",
+    "Now building agentic tooling, multi-pass LLM pipelines and RAG assistants on LangChain and LangGraph.",
+  ],
+  // Hard numbers, all traceable to a line in the experience section below.
+  stats: [
+    { value: "6+", label: "years backend" },
+    { value: "10x", label: "faster incident resolution" },
+    { value: "41%", label: "lower API latency" },
+    { value: "4d → live", label: "partner issue detection" },
   ],
 };
 

@@ -49,11 +49,28 @@ export default function Home() {
           </p>
         )}
 
-        <div className="mx-auto mt-8 max-w-2xl font-sans text-[15px] leading-relaxed text-foreground/85 space-y-3">
-          {profile.summary.map((para) => (
-            <p key={para}>{para}</p>
+        <p className="mx-auto mt-8 max-w-2xl font-sans text-xl sm:text-2xl leading-snug text-foreground">
+          {profile.headline}
+        </p>
+
+        <div className="mx-auto mt-4 max-w-2xl font-sans text-[15px] leading-relaxed text-muted space-y-1">
+          {profile.summary.map((line) => (
+            <p key={line}>{line}</p>
           ))}
         </div>
+
+        <dl className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-4">
+          {profile.stats.map((stat) => (
+            <div key={stat.label} className="bg-panel px-4 py-4">
+              <dt className="text-lg font-semibold text-accent tabular-nums">
+                {stat.value}
+              </dt>
+              <dd className="mt-1 text-[11px] leading-snug text-muted">
+                {stat.label}
+              </dd>
+            </div>
+          ))}
+        </dl>
 
         <nav className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm">
           {profile.resume && (
