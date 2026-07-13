@@ -18,11 +18,11 @@ export const profile = {
     "Today I'm building agentic tooling, multi-pass LLM pipelines, and RAG assistants with LangChain and LangGraph.",
   ],
   // Countable facts rather than outcome claims — each one is defensible on the spot.
+  // The grid below adapts to the number of entries, so more can be added later.
   stats: [
     { value: "6+", label: "years backend" },
-    { value: "4", label: "companies shipped at" },
-    { value: "5", label: "enterprise partners integrated" },
-    { value: "250+", label: "production issues resolved" },
+    { value: "3", label: "production services owned" },
+    { value: "100ms", label: "SLA across owned services" },
   ],
 };
 

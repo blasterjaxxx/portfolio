@@ -67,7 +67,7 @@ export default function Home() {
           ))}
         </div>
 
-        <dl className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-4">
+        <dl className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-px overflow-hidden rounded-md border border-line bg-line sm:auto-cols-fr sm:grid-flow-col">
           {profile.stats.map((stat) => (
             <div key={stat.label} className="bg-panel px-4 py-4">
               <dt className="text-lg font-semibold text-accent tabular-nums">
