@@ -1,65 +1,179 @@
-import Image from "next/image";
+import { CopyEmail } from "@/components/CopyEmail";
+import { education, experience, profile, projects, skills } from "@/lib/content";
+
+function SectionHeading({ children }: { children: string }) {
+  return (
+    <h2 className="text-xs tracking-[0.2em] text-accent uppercase mb-8 flex items-center gap-3">
+      <span aria-hidden>▸</span>
+      {children}
+      <span className="h-px flex-1 bg-line" aria-hidden />
+    </h2>
+  );
+}
+
+function Bullet({ children }: { children: string }) {
+  return (
+    <li className="flex gap-3">
+      <span className="mt-[9px] h-px w-3 shrink-0 bg-muted" aria-hidden />
+      <span>{children}</span>
+    </li>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="mx-auto w-full max-w-3xl px-6 py-16 sm:py-24">
+      <header>
+        <div className="text-sm text-muted mb-3">
+          <span className="text-accent">$</span> whoami
+          <span className="cursor ml-1" aria-hidden>
+            ▋
+          </span>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
+          {profile.name}
+        </h1>
+        <p className="mt-2 text-sm text-muted">
+          {profile.role} @ {profile.company} · {profile.location}
+        </p>
+
+        <div className="mt-8 border-l-2 border-line pl-4 font-sans text-[15px] leading-relaxed text-foreground/90 space-y-1">
+          {profile.tagline.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </div>
+
+        <nav className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+          {profile.resume && (
+            <a
+              href={profile.resume}
+              className="text-accent hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              resume.pdf
+            </a>
+          )}
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href={profile.linkedin}
+            className="text-muted hover:text-accent transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+            linkedin
           </a>
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href={profile.github}
+            className="text-muted hover:text-accent transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Documentation
+            github
           </a>
+          <CopyEmail email={profile.email} />
+        </nav>
+      </header>
+
+      <section className="mt-20">
+        <SectionHeading>experience</SectionHeading>
+        <div className="space-y-12">
+          {experience.map((job) => (
+            <article key={job.company}>
+              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
+                  {job.company}
+                  {job.current && (
+                    <span
+                      className="inline-block h-1.5 w-1.5 rounded-full bg-accent"
+                      title="Current role"
+                    />
+                  )}
+                </h3>
+                <span className="text-xs text-muted tabular-nums">{job.period}</span>
+              </div>
+              <p className="mt-1 text-sm text-muted">
+                {job.title} · {job.location}
+              </p>
+              <ul className="mt-4 space-y-2.5 font-sans text-[15px] leading-relaxed text-foreground/80">
+                {job.bullets.map((bullet) => (
+                  <Bullet key={bullet}>{bullet}</Bullet>
+                ))}
+              </ul>
+            </article>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="mt-20">
+        <SectionHeading>building</SectionHeading>
+        <div className="space-y-6">
+          {projects.map((project) => (
+            <article
+              key={project.name}
+              className="rounded-md border border-line bg-panel p-6"
+            >
+              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h3 className="text-base font-semibold text-foreground">
+                  {project.name}
+                </h3>
+                <span className="text-xs text-muted tabular-nums">{project.year}</span>
+              </div>
+
+              <p className="mt-3 font-sans text-[15px] leading-relaxed text-foreground/90">
+                {project.blurb}
+              </p>
+
+              <ul className="mt-4 flex flex-wrap gap-1.5">
+                {project.stack.map((tech) => (
+                  <li
+                    key={tech}
+                    className="rounded border border-line px-2 py-0.5 text-[11px] text-muted"
+                  >
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+
+              <ul className="mt-5 space-y-2.5 font-sans text-[15px] leading-relaxed text-foreground/70">
+                {project.highlights.map((highlight) => (
+                  <Bullet key={highlight}>{highlight}</Bullet>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-20">
+        <SectionHeading>stack</SectionHeading>
+        <dl className="space-y-3 text-sm">
+          {skills.map((group) => (
+            <div key={group.label} className="sm:flex sm:gap-4">
+              <dt className="w-32 shrink-0 text-muted">{group.label}</dt>
+              <dd className="mt-1 sm:mt-0 text-foreground/85">
+                {group.items.join(" · ")}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <section className="mt-20">
+        <SectionHeading>education</SectionHeading>
+        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+          <h3 className="text-base font-semibold text-foreground">
+            {education.school}
+          </h3>
+          <span className="text-xs text-muted tabular-nums">{education.period}</span>
+        </div>
+        <p className="mt-1 text-sm text-muted">
+          {education.degree} · {education.location}
+        </p>
+      </section>
+
+      <footer className="mt-24 border-t border-line pt-6 text-xs text-muted">
+        <span className="text-accent">$</span> built with next.js · deployed on vercel
+      </footer>
+    </main>
   );
 }
