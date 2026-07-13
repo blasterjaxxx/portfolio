@@ -49,13 +49,21 @@ export default function Home() {
           </p>
         )}
 
-        <p className="mx-auto mt-8 max-w-2xl font-sans text-xl sm:text-2xl leading-snug text-foreground">
+        <p className="mx-auto mt-8 max-w-3xl font-sans text-xl sm:text-2xl leading-snug text-foreground">
           {profile.headline}
         </p>
 
-        <div className="mx-auto mt-4 max-w-2xl font-sans text-[15px] leading-relaxed text-muted space-y-1">
+        <div className="mx-auto mt-6 max-w-3xl space-y-2 text-left">
           {profile.summary.map((line) => (
-            <p key={line}>{line}</p>
+            <p
+              key={line}
+              className="flex gap-3 font-sans text-[15px] leading-relaxed text-muted"
+            >
+              <span className="mt-[2px] shrink-0 text-accent" aria-hidden>
+                ▸
+              </span>
+              <span>{line}</span>
+            </p>
           ))}
         </div>
 

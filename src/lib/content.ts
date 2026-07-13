@@ -11,17 +11,18 @@ export const profile = {
   // Set to null to remove the availability line from the header.
   availability: "Open to senior backend & AI engineering roles" as string | null,
 
-  headline: "I build AI systems that survive contact with production.",
+  headline:
+    "I'm a backend engineer moving into AI-native systems engineering.",
   summary: [
-    "Six years of distributed systems, event-driven platforms and on-call reality — across fintech, e-commerce and enterprise.",
-    "Now building agentic tooling, multi-pass LLM pipelines and RAG assistants on LangChain and LangGraph.",
+    "For six years I've built distributed data pipelines, event-driven platforms, and the on-call tooling that keeps them alive — at Groupon, Zet, Leap Finance and Samsung.",
+    "Today I'm building agentic tooling, multi-pass LLM pipelines, and RAG assistants with LangChain and LangGraph.",
   ],
-  // Hard numbers, all traceable to a line in the experience section below.
+  // Countable facts rather than outcome claims — each one is defensible on the spot.
   stats: [
     { value: "6+", label: "years backend" },
-    { value: "10x", label: "faster incident resolution" },
-    { value: "41%", label: "lower API latency" },
-    { value: "4d → live", label: "partner issue detection" },
+    { value: "4", label: "companies shipped at" },
+    { value: "5", label: "enterprise partners integrated" },
+    { value: "250+", label: "production issues resolved" },
   ],
 };
 
