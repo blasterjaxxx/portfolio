@@ -49,6 +49,38 @@ body {
   }
 }
 
+/* Faint CRT scanlines over the glyph field. */
+.scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 2px,
+    rgba(0, 0, 0, 0.28) 2px 4px
+  );
+}
+
+.vignette {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(10, 12, 13, 0.25) 70%,
+    rgba(10, 12, 13, 0.7) 100%
+  );
+}
+
+/* Dims the glyph field behind the reading column (max-w-3xl = 48rem) so text
+   always wins, while leaving the animation legible in the side margins. */
+.column-mask {
+  background: linear-gradient(
+    to right,
+    transparent 0,
+    transparent calc(50% - 28rem),
+    rgba(10, 12, 13, 0.82) calc(50% - 23rem),
+    rgba(10, 12, 13, 0.82) calc(50% + 23rem),
+    transparent calc(50% + 28rem),
+    transparent 100%
+  );
+}
+
 ::selection {
   background: var(--accent);
   color: var(--background);

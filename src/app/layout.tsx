@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Inter } from "next/font/google";
 import "./globals.css";
+import { TerminalBackground } from "@/components/TerminalBackground";
 import { profile } from "@/lib/content";
 
 const mono = JetBrains_Mono({
@@ -41,7 +42,10 @@ export default function RootLayout({
       lang="en"
       className={`${mono.variable} ${sans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <TerminalBackground />
+        <div className="relative z-10 flex flex-1 flex-col">{children}</div>
+      </body>
     </html>
   );
 }
