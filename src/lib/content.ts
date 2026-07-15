@@ -18,13 +18,13 @@ export const profile = {
     "I build end-to-end and lean deterministic: a solid, testable core with LLMs only at the edges where they earn their place, never in the hot path. The craft is making non-deterministic models behave like dependable infrastructure.",
     "Lately that means agent-native tooling — observability, evaluation and RAG — built to survive production and to feed each other, not to demo.",
   ],
-  // Countable facts rather than outcome claims — each one is defensible on the spot.
-  // The grid below adapts to the number of entries, so more can be added later.
+  // Project-derived numbers — the résumé carries the career/backend facts, so this
+  // strip teases the work below. Each maps to one project and is checkable in code.
   stats: [
-    { value: "6+", label: "years backend" },
-    { value: "15", label: "production services owned" },
-    { value: "100ms", label: "SLA across owned services" },
     { value: "4", label: "AI systems built end-to-end" },
+    { value: "1.2K+", label: "bank transactions parsed" },
+    { value: "6-node", label: "self-correcting RAG graph" },
+    { value: "0", label: "bytes of audio leave the machine" },
   ],
 };
 
