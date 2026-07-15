@@ -95,6 +95,19 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    name: "Spending Analyser",
+    year: "2026",
+    blurb:
+      "A personal-finance platform that turns a year of messy bank data into a clean analytics dashboard — ingesting statements from Gmail and password-protected PDFs across three banks, then extracting, enriching and categorising every transaction.",
+    stack: ["Python", "FastAPI", "React", "Gmail API", "OpenAI", "pandas", "Recharts"],
+    highlights: [
+      "Two ingestion paths into one pipeline: a Gmail OAuth2 client that pulls transaction emails, and a parser that decrypts password-protected statement PDFs — normalising HDFC, ICICI and SBI across both bank accounts and credit cards via bank-specific processors on a shared base class.",
+      "Regex-first extraction with an LLM fallback: deterministic parsers handle the well-formed statements cheaply, and OpenAI is invoked only where a bank's format defeats the regex — keeping cost and latency down while still covering the long tail.",
+      "Merchant enrichment that matches opaque bank debits against Swiggy and Instamart order confirmations to recover the real merchant, backed by a 285-entry merchant→category map, with content-hashed deduplication so re-runs never double-count.",
+      "FastAPI backend serving a React dashboard (Recharts, react-query, framer-motion); bill-splitting uses deterministic SHA-256 transaction IDs so split records survive API restarts, and every HTTP request emits structured observability spans.",
+    ],
+  },
+  {
     name: "Eavesdropping",
     year: "2026",
     blurb:
