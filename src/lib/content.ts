@@ -7,7 +7,7 @@ export const profile = {
   linkedin: "https://linkedin.com/in/sparsh-duggal",
   github: "https://github.com/blasterjaxxx",
   // Drop the PDF into public/ and set this to its path to show the resume link.
-  resume: null as string | null,
+  resume: "/Sparsh_Duggal_Resume.pdf" as string | null,
   // Set to null to remove the availability line from the header.
   availability: "Open to senior backend & AI engineering roles" as string | null,
 
