@@ -91,6 +91,8 @@ export type Project = {
   stack: string[];
   highlights: string[];
   href?: string;
+  // Optional internal write-up page rendered as a "read the thesis" link.
+  writeup?: { href: string; label: string };
 };
 
 export const projects: Project[] = [
@@ -98,8 +100,12 @@ export const projects: Project[] = [
     name: "AgentTrace",
     year: "2026",
     blurb:
-      "An observability SDK and server rebuilt for agents, not humans. Today's tooling records what log lines happened; AgentTrace records causally-linked spans so an agent — or an engineer — can reconstruct why a path was taken and what state changed, which is what you actually need to debug non-deterministic systems.",
+      "A working prototype exploring one idea: today's logs are an interface designed for a human to read when something breaks — and that format falls apart when an agent reads them instead, blowing the context window and hallucinating. AgentTrace records causally-linked spans so a trace carries why a path was taken and what state changed, the compact context an agent actually needs.",
     stack: ["Python", "FastAPI", "PostgreSQL", "asyncio", "Pydantic"],
+    writeup: {
+      href: "/writing/observability-for-agents",
+      label: "Read the thesis: observability for agents, not humans",
+    },
     highlights: [
       "A causal span model that goes beyond OpenTelemetry: every span carries state_before, state_after and a computed state_diff, plus a first-class log_decision(candidates, chosen, rationale) primitive — so a trace captures the reasoning and the state transition, not just timing and log text.",
       "A Python SDK with decorators (@trace_llm_call, @trace_tool) and contextvar-based propagation, backed by an async batched transport with bounded queue, retries, secret-key redaction and field truncation so instrumentation never blocks or leaks the hot path.",

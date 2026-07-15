@@ -170,6 +170,16 @@ export default function Home() {
                       <Bullet key={highlight}>{highlight}</Bullet>
                     ))}
                   </ul>
+
+                  {project.writeup && (
+                    <a
+                      href={project.writeup.href}
+                      className="mt-5 inline-flex items-center gap-2 text-[13px] text-accent hover:underline"
+                    >
+                      {project.writeup.label}
+                      <span aria-hidden>→</span>
+                    </a>
+                  )}
                 </article>
 
                 {i < projects.length - 1 && (
