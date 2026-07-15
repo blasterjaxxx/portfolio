@@ -14,8 +14,9 @@ export const profile = {
   headline:
     "I'm a backend engineer moving into AI-native systems engineering.",
   summary: [
-    "For six years I've built distributed data pipelines, event-driven platforms, and the on-call tooling that keeps them alive — at Groupon, Zet, Leap Finance and Samsung.",
-    "Today I'm building agentic tooling, multi-pass LLM pipelines, and RAG assistants with LangChain and LangGraph.",
+    "Six years of backend under real load — distributed pipelines, event-driven platforms, and the on-call tooling that keeps them alive, across fintech, e-commerce and enterprise.",
+    "I build end-to-end and lean deterministic: a solid, testable core with LLMs only at the edges where they earn their place, never in the hot path. The craft is making non-deterministic models behave like dependable infrastructure.",
+    "Lately that means agent-native tooling — observability, evaluation and RAG — built to survive production and to feed each other, not to demo.",
   ],
   // Countable facts rather than outcome claims — each one is defensible on the spot.
   // The grid below adapts to the number of entries, so more can be added later.
@@ -23,6 +24,7 @@ export const profile = {
     { value: "6+", label: "years backend" },
     { value: "15", label: "production services owned" },
     { value: "100ms", label: "SLA across owned services" },
+    { value: "4", label: "AI systems built end-to-end" },
   ],
 };
 
