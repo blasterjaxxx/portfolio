@@ -127,29 +127,29 @@ export const projects: Project[] = [
     ],
   },
   {
-    name: "Eavesdropping",
+    name: "Debrief",
     year: "2026",
     blurb:
-      "A privacy-first CLI agent that silently records live interviews, transcribes on-device, and returns structured per-answer evaluation — without a single byte of audio leaving the machine.",
-    stack: ["Python", "LangChain", "faster-whisper", "Ollama / OpenAI", "Google Calendar API"],
+      "A privacy-first CLI that turns every interview into a structured self-review — capturing both sides of the call, transcribing entirely on-device, and running a multi-pass LLM evaluation. Not a byte of audio leaves the machine, and each session becomes the study corpus for Nexus.",
+    stack: ["Python", "LangChain", "faster-whisper", "Ollama", "Google Calendar API", "Pydantic"],
     highlights: [
-      "Dual-channel capture: two concurrent threads read the mic (candidate) and a BlackHole system-audio loopback (interviewer), then merge and time-sort both streams into one speaker-labelled transcript.",
-      "faster-whisper (CTranslate2, 2–4x faster on Apple Silicon) with VAD filtering and beam-search decoding, emitting timestamped speaker-tagged segments straight into the LLM pipeline.",
-      "A 3-pass LangChain pipeline: extract structured Q&A pairs via JsonOutputParser bound to Pydantic schemas; evaluate each answer across correctness, depth, clarity and communication; then run holistic cross-session analysis for recurring weaknesses and a hiring-manager verdict.",
-      "Google Calendar context (company, role, seniority) injected as a structured prompt block to calibrate evaluation harshness, with dynamic routing between OpenAI and local Ollama.",
+      "Dual-channel capture: concurrent threads read the mic (candidate) and a BlackHole system-audio loopback (interviewer), then merge and time-sort both streams into one speaker-labelled, timestamped transcript.",
+      "Fully on-device transcription with faster-whisper (CTranslate2, int8 on Apple Silicon) — 2–4x faster than openai-whisper at the same accuracy, and no audio ever leaves the laptop.",
+      "A three-pass LangChain pipeline, Pydantic-validated at every stage: extract Q&A pairs → score each answer on correctness, depth, clarity and communication with a model answer, a rewrite and drill suggestions → a holistic cross-session pass surfacing recurring weaknesses, knowledge-gap clusters and a hiring-manager verdict.",
+      "Google Calendar context (company, role, seniority) injected to calibrate evaluation harshness, with dynamic routing between a local Ollama model and OpenAI; each run is written as structured JSON that feeds Nexus's RAG index.",
     ],
   },
   {
-    name: "Interview Manager",
+    name: "Nexus — Interview Workspace",
     year: "2026",
     blurb:
-      "A full-stack job-search and interview-prep workspace: application tracking, Google integrations, resume parsing, and a RAG-powered study assistant over personal DSA and system-design notes.",
-    stack: ["FastAPI", "React", "LangGraph", "Chroma", "OpenAI Embeddings", "SQLite"],
+      "A candidate-first interview-prep platform that runs off your inbox: it reads Gmail and Calendar to auto-track applications, interviews and feedback, then layers a self-correcting RAG study assistant over your own DSA and system-design notes.",
+    stack: ["FastAPI", "React", "LangGraph", "Chroma", "OpenAI", "SQLAlchemy", "SQLite"],
     highlights: [
-      "A six-node LangGraph study graph (route → retrieve → grade → rewrite → generate → clarify) with a self-correction loop: an LLM grader scores each retrieved chunk for relevance via structured output, and irrelevant results trigger query rewriting and re-retrieval before falling back to clarification.",
-      "Incremental markdown indexing with heading-preserving splits (h1–h4), table-aware row-group chunking, and SHA-256 content hashing to skip unchanged files on re-index.",
-      "Every chunk enriched with inferred metadata (corpus, doc type, topic, company, round) enabling filtered retrieval — DSA chunks for a coding round, system-design chunks for an HLD round.",
-      "Secured with JWT auth, bcrypt hashing, and Google OAuth with AES-encrypted token storage.",
+      "An inbox-driven automation layer: dedicated sync services parse Gmail to detect job applications, interview invites and recruiter feedback, classify interview rounds, track outcomes, and generate per-interview prep research — turning a job search into a maintained pipeline instead of a spreadsheet.",
+      "A six-node LangGraph study graph (route → retrieve → grade → rewrite → generate → clarify) with a self-correction loop: an LLM grader flags each retrieved chunk's relevance via structured output (BatchGrade), and irrelevant hits trigger bounded query rewriting and re-retrieval before falling back to clarification.",
+      "Incremental markdown indexing — MarkdownHeaderTextSplitter (h1–h4) plus recursive splitting for oversized sections, table-aware row-group chunking, and SHA-256 content hashing to skip unchanged files on re-index — into a persistent Chroma store, with interview and profile context injected into retrieval.",
+      "Secured with JWT auth, bcrypt hashing and Google OAuth with AES-encrypted token storage; Postgres-ready via DATABASE_URL, with LangSmith tracing wired into the graph for debugging retrieval.",
     ],
   },
 ];
