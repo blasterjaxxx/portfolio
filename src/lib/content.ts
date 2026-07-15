@@ -1,13 +1,13 @@
 export const profile = {
   name: "Sparsh Duggal",
   handle: "sparsh-duggal",
-  role: "Senior Software Engineer",
+  role: "Software Development Engineer II",
   location: "Bangalore, India",
   email: "sparshduggalw@gmail.com",
   linkedin: "https://linkedin.com/in/sparsh-duggal",
   github: "https://github.com/blasterjaxxx",
   // Drop the PDF into public/ and set this to its path to show the resume link.
-  resume: "/Sparsh_Duggal_Resume.pdf" as string | null,
+  resume: null as string | null,
   // Set to null to remove the availability line from the header.
   availability: "Open to senior backend & AI engineering roles" as string | null,
 

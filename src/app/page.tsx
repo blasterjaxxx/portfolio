@@ -1,6 +1,6 @@
 import { Connector } from "@/components/Connector";
 import { CopyEmail } from "@/components/CopyEmail";
-import { education, profile, projects, skills } from "@/lib/content";
+import { profile, projects, skills } from "@/lib/content";
 
 function SectionHeading({ children }: { children: string }) {
   return (
@@ -189,22 +189,6 @@ export default function Home() {
             );
           })}
         </div>
-      </section>
-
-      {/* Education. */}
-      <section className="mt-24">
-        <SectionHeading>education</SectionHeading>
-        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-          <h3 className="text-base font-semibold text-foreground">
-            {education.school}
-          </h3>
-          <span className="text-xs text-muted tabular-nums">
-            {education.period}
-          </span>
-        </div>
-        <p className="mt-1 text-sm text-muted">
-          {education.degree} · {education.location}
-        </p>
       </section>
 
       <footer className="mt-24 border-t border-line pt-6 text-center text-xs text-muted">
