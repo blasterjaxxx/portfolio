@@ -1,6 +1,6 @@
 import { Connector } from "@/components/Connector";
 import { CopyEmail } from "@/components/CopyEmail";
-import { education, experience, profile, projects, skills } from "@/lib/content";
+import { education, profile, projects, skills } from "@/lib/content";
 
 function SectionHeading({ children }: { children: string }) {
   return (
@@ -128,53 +128,7 @@ export default function Home() {
         </dl>
       </section>
 
-      {/* Experience — staggered zigzag with dashed connectors. */}
-      <section className="mt-24">
-        <SectionHeading>experience</SectionHeading>
-        <div>
-          {experience.map((job, i) => {
-            const left = i % 2 === 0;
-            return (
-              <div key={job.company}>
-                <article
-                  className={`rounded-md border border-line bg-panel p-6 transition-colors hover:border-accent/30 md:w-[76%] ${
-                    left ? "md:mr-auto" : "md:ml-auto"
-                  }`}
-                >
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                    <h3 className="flex items-center gap-2 text-base font-semibold text-foreground">
-                      {job.company}
-                      {job.current && (
-                        <span
-                          className="inline-block h-1.5 w-1.5 rounded-full bg-accent"
-                          title="Current role"
-                        />
-                      )}
-                    </h3>
-                    <span className="text-xs text-muted tabular-nums">
-                      {job.period}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-sm text-muted">
-                    {job.title} · {job.location}
-                  </p>
-                  <ul className="mt-4 space-y-2.5 font-sans text-[15px] leading-relaxed text-foreground/80">
-                    {job.bullets.map((bullet) => (
-                      <Bullet key={bullet}>{bullet}</Bullet>
-                    ))}
-                  </ul>
-                </article>
-
-                {i < experience.length - 1 && (
-                  <Connector dir={left ? "ltr" : "rtl"} />
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Projects — same staggered zigzag as experience. */}
+      {/* Projects — staggered zigzag with dashed connectors. */}
       <section className="mt-24">
         <SectionHeading>building</SectionHeading>
         <div>
