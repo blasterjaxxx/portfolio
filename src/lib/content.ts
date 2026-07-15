@@ -95,6 +95,19 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    name: "AgentTrace",
+    year: "2026",
+    blurb:
+      "An observability SDK and server rebuilt for agents, not humans. Today's tooling records what log lines happened; AgentTrace records causally-linked spans so an agent — or an engineer — can reconstruct why a path was taken and what state changed, which is what you actually need to debug non-deterministic systems.",
+    stack: ["Python", "FastAPI", "PostgreSQL", "asyncio", "Pydantic"],
+    highlights: [
+      "A causal span model that goes beyond OpenTelemetry: every span carries state_before, state_after and a computed state_diff, plus a first-class log_decision(candidates, chosen, rationale) primitive — so a trace captures the reasoning and the state transition, not just timing and log text.",
+      "A Python SDK with decorators (@trace_llm_call, @trace_tool) and contextvar-based propagation, backed by an async batched transport with bounded queue, retries, secret-key redaction and field truncation so instrumentation never blocks or leaks the hot path.",
+      "A FastAPI ingestion and query server over PostgreSQL (JSONB spans indexed by trace, parent and type) with a trace viewer and deterministic Trace Q&A — answering questions like 'which decision path was taken?' or 'what state changed?' by walking the span tree rather than grepping logs.",
+      "An instrumentation agent (agenttrace-instrument) that scans a Python/FastAPI repo, proposes request, business and decision spans, names the debugging question each span answers, computes a telemetry-quality score with an accept/reject verdict, and emits a PR-style patch preview — dogfooded on the Spending Analyser.",
+    ],
+  },
+  {
     name: "Spending Analyser",
     year: "2026",
     blurb:
