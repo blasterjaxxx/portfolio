@@ -24,7 +24,7 @@ export const profile = {
     { value: "4", label: "AI systems built end-to-end" },
     { value: "1.2K+", label: "bank transactions parsed" },
     { value: "6-node", label: "self-correcting RAG graph" },
-    { value: "0", label: "bytes of audio leave the machine" },
+    { value: "100%", label: "on-device transcription" },
   ],
 };
 
