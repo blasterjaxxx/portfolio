@@ -130,6 +130,19 @@ export const projects: Project[] = [
     ],
   },
   {
+    name: "Architecture Lab",
+    year: "2026",
+    blurb:
+      "An interactive systems-design simulator: drag components onto a canvas, wire them together, turn the traffic up and watch where the design breaks. Six guided labs walk through database saturation, caching and asynchronous processing, and every run returns a plain-English account of which component is the bottleneck and why.",
+    stack: ["TypeScript", "React", "Vite", "Zustand", "React Flow", "Vitest"],
+    highlights: [
+      "A deterministic simulation engine at the core: a topological pass propagates arrival rates through the graph, where cache and CDN nodes forward only their miss traffic, API endpoints split load by read/write budget and per-endpoint weight, and storage nodes carry a write-amplification factor — a pure function over (nodes, edges, workload), unit-tested with Vitest rather than eyeballed in the UI.",
+      "A queueing model built to make saturation felt: per-node utilization is arrivals over capacity × instances, and latency is scaled by 1/(1 − utilization) so the cost curve goes vertical as a component approaches its limit. Each node's contribution is weighted by visit ratio, the throughput ceiling is the minimum of capacity/visit-ratio across the path, and p95 is derived from the mean scaled by peak utilization.",
+      "Asynchrony modelled structurally, not as a flag: a breadth-first walk from queue and stream nodes marks every descendant async, so that work counts against capacity and the throughput ceiling while contributing zero user-facing latency — which is precisely the argument for putting a queue in front of slow work, made visible instead of asserted.",
+      "Thirty component types that cover agent architectures, not just CRUD: model gateways, tools, retrieval, session memory, guardrails, approvals, evaluators and tracing, each carrying token accounting (input, output and context growth), tool-call counts, retry rate and per-million pricing — so an agent design can be costed per request the same way a database gets capacity-planned.",
+    ],
+  },
+  {
     name: "Spending Analyser",
     year: "2026",
     blurb:
