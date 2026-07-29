@@ -21,7 +21,7 @@ export const profile = {
   // Project-derived numbers — the résumé carries the career/backend facts, so this
   // strip teases the work below. Each maps to one project and is checkable in code.
   stats: [
-    { value: "4", label: "AI systems built end-to-end" },
+    { value: "5", label: "AI systems built end-to-end" },
     { value: "1.2K+", label: "bank transactions parsed" },
     { value: "6-node", label: "self-correcting RAG graph" },
     { value: "100%", label: "on-device transcription" },
@@ -113,6 +113,19 @@ export const projects: Project[] = [
       "A Python SDK with decorators (@trace_llm_call, @trace_tool) and contextvar-based propagation, backed by an async batched transport with bounded queue, retries, secret-key redaction and field truncation so instrumentation never blocks or leaks the hot path.",
       "A FastAPI ingestion and query server over PostgreSQL (JSONB spans indexed by trace, parent and type) with a trace viewer and deterministic Trace Q&A — answering questions like 'which decision path was taken?' or 'what state changed?' by walking the span tree rather than grepping logs.",
       "An instrumentation agent (agenttrace-instrument) that scans a Python/FastAPI repo, proposes request, business and decision spans, names the debugging question each span answers, computes a telemetry-quality score with an accept/reject verdict, and emits a PR-style patch preview — dogfooded on the Spending Analyser.",
+    ],
+  },
+  {
+    name: "Accountability Agent",
+    year: "2026",
+    blurb:
+      "A voice-first accountability assistant that runs on a phone with no app to install: speak to Siri or message a Telegram bot and it logs expenses, workouts, meals and health metrics, then pushes a nightly digest that makes the day hard to ignore. Live and in daily use — by me and my girlfriend :)",
+    stack: ["Python", "FastAPI", "OpenAI", "PostgreSQL", "Vercel", "Telegram Bot API", "Siri Shortcuts"],
+    highlights: [
+      "Three entry points, one brain: a Siri dictation Shortcut, a Telegram bot, and a nightly Apple Health sync automation all POST to the same FastAPI endpoint, which runs a bounded (≤5 iteration) OpenAI tool-calling loop over six tools — log_expense, log_workout, log_meal, log_health, summarize_spending, nutrition_summary. Adding a capability means adding a tool, not another interface.",
+      "Multi-user by row, not by redeploy: every table is partitioned by a stable user_id resolved server-side — DB-issued bearer tokens for Siri, a chat-id registry for Telegram — and injected into each tool call, so the model can never read or write as another person. Onboarding is self-service (/adduser, /token) and costs an insert rather than a deploy.",
+      "The accountability loop itself: a Vercel Cron job hits /api/cron/nightly, which assembles each user's meals (grouped by LLM-inferred meal type with per-meal and total calories), workout, health metrics and spending-by-category into a Telegram digest — turning a passive log into a nightly nudge.",
+      "Serverless constraints shaped the design: an ephemeral filesystem ruled out SQLite, and moving to Neon Postgres is what made multi-user trivial; timestamps are stored UTC with today/week/month windows computed in the user's timezone, health is upserted one row per user per day, CRON_SECRET guards the digest endpoint, and /api/reset scopes deletion to the caller alone.",
     ],
   },
   {
