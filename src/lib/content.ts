@@ -135,6 +135,7 @@ export const projects: Project[] = [
     blurb:
       "An interactive systems-design simulator: drag components onto a canvas, wire them together, turn the traffic up and watch where the design breaks. Six guided labs walk through database saturation, caching and asynchronous processing, and every run returns a plain-English account of which component is the bottleneck and why.",
     stack: ["TypeScript", "React", "Vite", "Zustand", "React Flow", "Vitest"],
+    href: "https://architecture-lab-eight.vercel.app/",
     highlights: [
       "A deterministic simulation engine at the core: a topological pass propagates arrival rates through the graph, where cache and CDN nodes forward only their miss traffic, API endpoints split load by read/write budget and per-endpoint weight, and storage nodes carry a write-amplification factor — a pure function over (nodes, edges, workload), unit-tested with Vitest rather than eyeballed in the UI.",
       "A queueing model built to make saturation felt: per-node utilization is arrivals over capacity × instances, and latency is scaled by 1/(1 − utilization) so the cost curve goes vertical as a component approaches its limit. Each node's contribution is weighted by visit ratio, the throughput ceiling is the minimum of capacity/visit-ratio across the path, and p95 is derived from the mean scaled by peak utilization.",
