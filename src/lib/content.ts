@@ -121,6 +121,7 @@ export const projects: Project[] = [
     blurb:
       "A voice-first accountability assistant that runs on a phone with no app to install: speak to Siri or message a Telegram bot and it logs expenses, workouts, meals and health metrics, then pushes a nightly digest that makes the day hard to ignore. Live and in daily use — by me and my girlfriend :)",
     stack: ["Python", "FastAPI", "OpenAI", "PostgreSQL", "Vercel", "Telegram Bot API", "Siri Shortcuts"],
+    href: "https://accountability-agent-indol.vercel.app/",
     highlights: [
       "Three entry points, one brain: a Siri dictation Shortcut, a Telegram bot, and a nightly Apple Health sync automation all POST to the same FastAPI endpoint, which runs a bounded (≤5 iteration) OpenAI tool-calling loop over six tools — log_expense, log_workout, log_meal, log_health, summarize_spending, nutrition_summary. Adding a capability means adding a tool, not another interface.",
       "Multi-user by row, not by redeploy: every table is partitioned by a stable user_id resolved server-side — DB-issued bearer tokens for Siri, a chat-id registry for Telegram — and injected into each tool call, so the model can never read or write as another person. Onboarding is self-service (/adduser, /token) and costs an insert rather than a deploy.",
