@@ -4,6 +4,7 @@ export const profile = {
   role: "Software Development Engineer II",
   location: "Bangalore, India",
   email: "sparshduggalw@gmail.com",
+  emailAlt: "sparshduggal412@gmail.com",
   linkedin: "https://linkedin.com/in/sparsh-duggal",
   github: "https://github.com/blasterjaxxx",
   // Drop the PDF into public/ and set this to its path to show the resume link.

@@ -108,6 +108,7 @@ export default function Home() {
             github
           </a>
           <CopyEmail email={profile.email} />
+          <CopyEmail email={profile.emailAlt} />
         </nav>
       </header>
 
