@@ -22,7 +22,7 @@ export const profile = {
   // Project-derived numbers — the résumé carries the career/backend facts, so this
   // strip teases the work below. Each maps to one project and is checkable in code.
   stats: [
-    { value: "5", label: "AI systems built end-to-end" },
+    { value: "6", label: "AI systems built end-to-end" },
     { value: "1.2K+", label: "bank transactions parsed" },
     { value: "6-node", label: "self-correcting RAG graph" },
     { value: "100%", label: "on-device transcription" },
@@ -145,6 +145,19 @@ export const projects: Project[] = [
     ],
   },
   {
+    name: "MindShelf",
+    year: "2026",
+    blurb:
+      "A self-hosted study workspace that turns a shelf of documents into mind maps you can learn branch by branch, with an AI tutor behind every node. The load-bearing decision is what the model is not allowed to do: the map is built from the document's own heading hierarchy, never invented, so every node is a real section of the source and the tutor teaching it is grounded in text the author actually wrote.",
+    stack: ["TypeScript", "Next.js", "React", "anydoc", "OpenAI", "Gemini", "Tailwind"],
+    highlights: [
+      "Structure-first map building: anydoc (Firecrawl's Rust converter) normalises PDF, DOC(X), PPT(X), XLS(X), ODT, RTF, EPUB and CSV into one Markdown shape, whose heading hierarchy is parsed into a nested outline with each section carrying a char-range anchor back into its source. The LLM is confined to a polish pass — clean cryptic titles, drop front and back matter, write summaries — and never invents or reorders a node, so a failed polish call still yields a complete map from the raw headings rather than nothing.",
+      "A fallback for documents that have no structure to read: when heading markup is absent — common in PDFs exported from slide decks — the parser locates the 'Contents' or 'Index' section and reads its numbered entries as the outline, which is the literal index page of the book and therefore still the document's own structure rather than the model's guess.",
+      "Section-first retrieval at study time: a node's own anchored section is the primary context, supplemented by the top-8 chunks (1000 chars, 150 overlap) by cosine similarity across every source in the book — brute-force over a per-book index, no vector DB, which is plenty at study scale — and degrading to keyword-overlap scoring when the provider can't embed, so chat never breaks on a missing capability.",
+      "An adaptive tutor over a provider-agnostic layer: the prompt requires a different analogy when the learner seems confused and emits a [[SUGGEST_WEB_SEARCH]] marker the UI strips into a one-click chip when it's still not landing; providers sit behind a two-method interface (complete, embed) with an env-driven registry that falls through to whichever key exists. Zero external infra — scrypt password hashing and HMAC-signed session cookies on node:crypto, per-user shelves over an atomically-written JSON store.",
+    ],
+  },
+  {
     name: "Spending Analyser",
     year: "2026",
     blurb:
@@ -192,7 +205,7 @@ export const skills: { label: string; items: string[] }[] = [
   },
   {
     label: "ai / ml",
-    items: ["LangChain", "LangGraph", "RAG", "OpenAI API", "Ollama", "Whisper", "Chroma", "LangSmith", "MCP"],
+    items: ["LangChain", "LangGraph", "RAG", "OpenAI API", "Ollama", "Whisper", "Chroma", "LangSmith", "MCP", "Gemini"],
   },
   {
     label: "frameworks",
