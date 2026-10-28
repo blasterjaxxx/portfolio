@@ -96,6 +96,8 @@ export type Project = {
   href?: string;
   // Optional internal write-up page rendered as a "read the thesis" link.
   writeup?: { href: string; label: string };
+  // Optional short screen recording (files in public/demos), shown muted and looping.
+  demo?: { src: string; poster: string; caption: string };
 };
 
 export const projects: Project[] = [
@@ -136,6 +138,11 @@ export const projects: Project[] = [
     blurb:
       "Two halves of one personal agent platform. Agent Console is the runtime: a web UI where you point an agent at MCP connectors, ask it things ad hoc or put it on a cron schedule, and watch each run stream in live. Agent Composer is the assembly step in front of it: instead of one generalist agent with every tool attached, it composes a specialist per request — role, tools, MCP servers, skills and model tier — from a classifier's probabilities, with plain code making every final call.",
     stack: ["TypeScript", "Next.js", "MCP", "OpenAI SDK", "Claude Agent SDK", "SQLite", "node-cron"],
+    demo: {
+      src: "/demos/agent-console-composer.webm",
+      poster: "/demos/agent-console-composer.jpg",
+      caption: "Console running an ad-hoc prompt on a local model, then Composer assembling a specialist agent for a request",
+    },
     highlights: [
       "Model-agnostic by wire format, not by adapter: the console speaks OpenAI Chat Completions through the official SDK, so a provider is just a base URL, a key and a model name — OpenAI, Anthropic, OpenRouter, Groq, Together, Gemini and Ollama switch from Settings without touching the agent loop.",
       "Connectors are MCP servers, remote over HTTP/SSE or local ones the app spawns over stdio, with tool names namespaced per connector so two servers can both expose search. Google is configured from the UI with client secrets and refresh tokens AES-256-GCM encrypted at rest, and access tokens refresh themselves so unattended cron jobs keep working; scheduling runs in-process, so there is no external scheduler to deploy.",
@@ -163,6 +170,11 @@ export const projects: Project[] = [
     blurb:
       "A local-first tool for studying material you already have on disk. Attach a folder or a few files, ask a question, and every answer arrives as a card carrying the follow-up questions it raises; clicking one branches into a new card, so the canvas ends up shaped like the path you actually followed through the material — one canvas per subject.",
     stack: ["TypeScript", "Next.js", "React", "SQLite", "Anthropic", "OpenAI", "Gemini", "OpenRouter"],
+    demo: {
+      src: "/demos/spaniel-study-canvas.webm",
+      poster: "/demos/spaniel-study-canvas.jpg",
+      caption: "Attach notes, ask, and branch a follow-up into a new card — answered on-device by qwen2.5:3b",
+    },
     highlights: [
       "Grounded by contract: answers come from the attached documents (PDF, DOCX, TXT, MD, CSV, JSON) and say 'Not in the document:' plainly rather than filling the gap from the model's own knowledge.",
       "Follow-ups are drawn from the source, not invented — the next section, a claim the document asserts without explaining, a case it leaves open — so branching deeper means going further into the text, not drifting away from it.",

@@ -180,6 +180,26 @@ export default function Home() {
                     ))}
                   </ul>
 
+                  {project.demo && (
+                    <figure className="mt-5">
+                      <video
+                        src={project.demo.src}
+                        poster={project.demo.poster}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                        aria-label={`${project.name} demo: ${project.demo.caption}`}
+                        className="aspect-[16/10] w-full rounded border border-line bg-background object-cover"
+                      />
+                      <figcaption className="mt-2 text-[11px] text-muted">
+                        <span className="text-accent">▸</span> demo ·{" "}
+                        {project.demo.caption}
+                      </figcaption>
+                    </figure>
+                  )}
+
                   <ul className="mt-5 space-y-2.5 font-sans text-[15px] leading-relaxed text-foreground/70">
                     {project.highlights.map((highlight) => (
                       <Bullet key={highlight}>{highlight}</Bullet>
