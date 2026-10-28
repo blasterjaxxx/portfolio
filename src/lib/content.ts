@@ -22,7 +22,7 @@ export const profile = {
   // Project-derived numbers — the résumé carries the career/backend facts, so this
   // strip teases the work below. Each maps to one project and is checkable in code.
   stats: [
-    { value: "6", label: "AI systems built end-to-end" },
+    { value: "8", label: "AI systems built end-to-end" },
     { value: "1.2K+", label: "bank transactions parsed" },
     { value: "6-node", label: "self-correcting RAG graph" },
     { value: "100%", label: "on-device transcription" },
@@ -131,6 +131,19 @@ export const projects: Project[] = [
     ],
   },
   {
+    name: "Agent Console + Composer",
+    year: "2026",
+    blurb:
+      "Two halves of one personal agent platform. Agent Console is the runtime: a web UI where you point an agent at MCP connectors, ask it things ad hoc or put it on a cron schedule, and watch each run stream in live. Agent Composer is the assembly step in front of it: instead of one generalist agent with every tool attached, it composes a specialist per request — role, tools, MCP servers, skills and model tier — from a classifier's probabilities, with plain code making every final call.",
+    stack: ["TypeScript", "Next.js", "MCP", "OpenAI SDK", "Claude Agent SDK", "SQLite", "node-cron"],
+    highlights: [
+      "Model-agnostic by wire format, not by adapter: the console speaks OpenAI Chat Completions through the official SDK, so a provider is just a base URL, a key and a model name — OpenAI, Anthropic, OpenRouter, Groq, Together, Gemini and Ollama switch from Settings without touching the agent loop.",
+      "Connectors are MCP servers, remote over HTTP/SSE or local ones the app spawns over stdio, with tool names namespaced per connector so two servers can both expose search. Google is configured from the UI with client secrets and refresh tokens AES-256-GCM encrypted at rest, and access tokens refresh themselves so unattended cron jobs keep working; scheduling runs in-process, so there is no external scheduler to deploy.",
+      "Composer's golden rule is 'the model suggests, code decides': one classifier call returns only probabilities, and compose() turns them into yes/no through thresholds kept in a single policy file — grant a capability at P ≥ 0.5, ask the user instead of guessing when role confidence is below 0.6, refuse requests that are too underspecified, and drop to confirm-before-acting mode when the irreversibility score crosses 0.3. Every decision is written to a trace.",
+      "Plug-and-play by registry: roles, tools, MCP servers, skills and model tiers are pure data, the classifier's questions are generated from that registry, skills pull in the tools they require, and the model tier is picked by request complexity (Haiku → Sonnet → Opus). The registry validates at boot, so a typo crashes immediately instead of silently dropping a tool mid-task, and the output AgentSpec is harness-neutral — a runner maps it onto Claude Agent SDK options.",
+    ],
+  },
+  {
     name: "Architecture Lab",
     year: "2026",
     blurb:
@@ -142,6 +155,19 @@ export const projects: Project[] = [
       "A queueing model built to make saturation felt: per-node utilization is arrivals over capacity × instances, and latency is scaled by 1/(1 − utilization) so the cost curve goes vertical as a component approaches its limit. Each node's contribution is weighted by visit ratio, the throughput ceiling is the minimum of capacity/visit-ratio across the path, and p95 is derived from the mean scaled by peak utilization.",
       "Asynchrony modelled structurally, not as a flag: a breadth-first walk from queue and stream nodes marks every descendant async, so that work counts against capacity and the throughput ceiling while contributing zero user-facing latency — which is precisely the argument for putting a queue in front of slow work, made visible instead of asserted.",
       "Thirty component types that cover agent architectures, not just CRUD: model gateways, tools, retrieval, session memory, guardrails, approvals, evaluators and tracing, each carrying token accounting (input, output and context growth), tool-call counts, retry rate and per-million pricing — so an agent design can be costed per request the same way a database gets capacity-planned.",
+    ],
+  },
+  {
+    name: "Spaniel — Study Canvas",
+    year: "2026",
+    blurb:
+      "A local-first tool for studying material you already have on disk. Attach a folder or a few files, ask a question, and every answer arrives as a card carrying the follow-up questions it raises; clicking one branches into a new card, so the canvas ends up shaped like the path you actually followed through the material — one canvas per subject.",
+    stack: ["TypeScript", "Next.js", "React", "SQLite", "Anthropic", "OpenAI", "Gemini", "OpenRouter"],
+    highlights: [
+      "Grounded by contract: answers come from the attached documents (PDF, DOCX, TXT, MD, CSV, JSON) and say 'Not in the document:' plainly rather than filling the gap from the model's own knowledge.",
+      "Follow-ups are drawn from the source, not invented — the next section, a claim the document asserts without explaining, a case it leaves open — so branching deeper means going further into the text, not drifting away from it.",
+      "Provider switch is one env line: MODEL=<provider>/<model> plus that provider's usual key, roughly forty providers with no code change, and AI_BASE_URL to point at a LiteLLM proxy or a local model server.",
+      "Entirely local — SQLite, your own key, no accounts, no server beyond the dev process. Documents belong to one canvas, so the same file on two canvases gives two independent lines of questioning, and each card's footer makes answer placement explicit: new card or this card.",
     ],
   },
   {
