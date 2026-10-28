@@ -1,7 +1,7 @@
 export const profile = {
   name: "Sparsh Duggal",
   handle: "sparsh-duggal",
-  role: "Software Development Engineer II",
+  role: "Engineer",
   location: "Bangalore, India",
   email: "sparshduggalw@gmail.com",
   emailAlt: "sparshduggal412@gmail.com",
